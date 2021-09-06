@@ -38,7 +38,7 @@ Network Access Controller
 
 #### Step 2: 
 Create Internet Gateway (IG)   
-- 2.1. Attach the IG to yout VPC
+- 2.1. Attach the IG to your VPC
 
 #### Step 3: Create route table 
 ##### 3.1 Edit route and insert you IG in `target`
