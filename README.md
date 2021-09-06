@@ -41,13 +41,12 @@ Create Internet Gateway (IG)
 - 2.1. Attach the IG to your VPC
 
 #### Step 3: Create route table 
- 3.1 Edit route and insert you IG in `target`
+ - 3.1 Edit route and insert you IG in `target`
 
 #### Step 4: Create public subnet 
--  `10.0.(Change).0/24`
-    #### 4.1 Associate public subnet with out RT 
-#### Step 5:
-Create public NACLs 
+- `10.0.(Change).0/24`
+- 4.1 Associate public subnet with out RT 
+#### Step 5: Create public NACLs 
 - create inbound and outbound rules 
 ## Step 6:
 create a Secure group  for our app
