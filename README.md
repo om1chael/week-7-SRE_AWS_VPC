@@ -31,21 +31,21 @@ Network Access Controller
 
 
 # TO DO
-- STEP 1: Create a VPC with IPV valid CIDR blocks 
+## Step 1: Create a VPC with IPV valid CIDR blocks 
 `10.0.0.0/16`
 `10.0.(Change).0/16`
 
-STEP 2: 
+## Step 2: 
 Create Internet Gateway (IG)   
     2.1. Attach the IG to yout VPC
 
-Step 3: Create route table 
-3.1 Edit route and insert you IG in `target`
-Step 4: Create public subnet 
+## Step 3: Create route table 
+### 3.1 Edit route and insert you IG in `target`
+## Step 4: Create public subnet 
 -  `10.0.(Change).0/24`
-    4.1 Associate public subnet with out RT 
-Step 5:
+    ### 4.1 Associate public subnet with out RT 
+## Step 5:
 Create public NACLs 
 - create inbound and outbound rules 
-step 6:
+## Step 6:
 create a Secure group  for our app
