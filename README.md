@@ -1,13 +1,10 @@
 # week-7-SRE_AWS_VPC 
-
-## Tasks:
-
-- (VPC) CIDR Blocks for VPC
-- - Internet Gateway 
-- subnets 
-- Rounte tables 
-- Network Access Control (NACLs)
-- Security Groups 
+# (VPC) CIDR Blocks for VPC
+## Internet Gateway 
+### subnets 
+#### Rounte tables 
+#### Network Access Control (NACLs)
+## Security Groups 
 
 
 ![image](https://user-images.githubusercontent.com/17476059/132219539-c66623d9-c7d5-4ad9-90ff-594b3f01fcf8.png)
