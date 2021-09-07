@@ -47,9 +47,10 @@ Create Internet Gateway (IG)
     - 4.1 Associate public subnet with out Route table
 #### Step 5: Create public NACLs 
 - create inbound and outbound rules 
-## Step 6:
+#### Step 6:
 create a Secure group  for our app
 
+# END
 ___
 
 # AWS Regions 
@@ -69,12 +70,18 @@ The depoyment needs to be higly reliable and fast. Thus, you need to deploy to t
 # Creating a custom VPC with subnets
 ![image](https://i.ytimg.com/vi/gUesnoDzNr4/maxresdefault.jpg)
 
-## Overall steps
+
+## Overall steps:
 - Create and configure VPC
 - Internet Gateway(IG)
 - Create the Subnets
 
-## Creating the VPC
+
+## The Goal: 
+![link](https://github.com/Mo0rBy/SRE_AWS_VPC_Networking/raw/main/img/Custom_diagram.PNG)
+
+
+## Creating the VPC:
  - Open the Amazon VPC console at https://console.aws.amazon.com/vpc/
  - Select the second option, VPC with a Single Public Subnet, and then click Select
  - Enter the following information into the wizard and click Create VPC:
@@ -88,7 +95,7 @@ Set an IPv4 CIDR block
 
 ```
 
-### Create an Internet Gateway
+### Create an Internet Gateway:
  - In the side tab navigate to the `Internet Gateway`  and create a new gateway
  - give it a name and attach it to the VPC that you created 
 
