@@ -75,13 +75,9 @@ The depoyment needs to be higly reliable and fast. Thus, you need to deploy to t
 - Create the Subnets
 
 ## Creating the VPC
-
-
-### Open the Amazon VPC console at https://console.aws.amazon.com/vpc/
-
-### Select the second option, VPC with a Single Public Subnet, and then click Select
-
-### Enter the following information into the wizard and click Create VPC.
+ - Open the Amazon VPC console at https://console.aws.amazon.com/vpc/
+ - Select the second option, VPC with a Single Public Subnet, and then click Select
+ - Enter the following information into the wizard and click Create VPC:
 ```
 IP CIDR block - 10.0.0.0/16
 VPC name - ADS VPC
