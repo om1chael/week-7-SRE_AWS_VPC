@@ -104,12 +104,19 @@ Set an IPv4 CIDR block
 
 
 ## - Making a  Route Table 
-
+- Navigate to `Internet Gateways `
+- Set the VPC name 
+- Find your IG in the list and then  `attach VPC`
 ## - Creating a Network Access Control List
+
 
 ## Public Subnet Rules
 
+
+
 ## Private Subnet Rules
+
+
 
 ## loading the instance using AMI
 
