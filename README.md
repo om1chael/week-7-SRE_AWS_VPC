@@ -55,7 +55,7 @@ ___
 
 # AWS Regions 
 
-![alt text](Images\screen-shot-2016-03-20-at-3-06-22-pm.png)
+![image](https://user-images.githubusercontent.com/17476059/132408217-d7d9af18-26ff-4cd6-b009-7ac57d437c21.png)
 
 
 ## Avliablity zone:
