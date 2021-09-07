@@ -44,7 +44,7 @@ Create Internet Gateway (IG)
 
 #### Step 4: Create public subnet 
 - `10.7.0.0/24`
-    - 4.1 Associate public subnet with out RT 
+    - 4.1 Associate public subnet with out Route table
 #### Step 5: Create public NACLs 
 - create inbound and outbound rules 
 ## Step 6:
@@ -107,17 +107,79 @@ Set an IPv4 CIDR block
 - Navigate to `Internet Gateways `
 - Set the VPC name 
 - Find your IG in the list and then  `attach VPC`
+
 ## - Creating a Network Access Control List
+- Find the `NACL` under the Security tab in the VPC Dashboard and select `Create network ACL` 
+    - You will need to create **Two** NACL's (one for the app and the other for the DB)
+- Name your `NACL` e.g. sre-michael-NACL
+    - Select your VPC from the dropdown menu.
+- Select your NACL from the list, go to the Inbound rules tab and edit your rules. Do the same for Outbound rules.
 
 
-## Public Subnet Rules
+# Public Subnet Rules (App rules)
+## Inboound Rules 
+| Rule | IP source    | Protocol | Port       |Destination| Allow/Deny  |
+|------|--------------|----------|------------|------------|------------|
+| 1    | 0.0.0.0/0    | HTTP     | 80         |0.0.0.0/0   | Allow      |
+| 2    | my public ip | SSH      | 22         |Public IP   | Allow      |
+| 3    | 0.0.0.0/0    | TCP      | 1024-65535 |0.0.0.0/0   | Allow      |
+| *    | 0.0.0.0/0    | All      | All        |0.0.0.0/0   | Deny       |
+
+## outbound rules 
+| Rule | Type        | Protocol | Port       | Destination  | Allow/Deny |
+|------|-------------|----------|------------|--------------|------------|
+| 1    | Http        | 6        | 80         | 0.0.0.0/0    | Allow      |
+| 2    | TCP         | 6        | 27017      | 10.7.1.0./24 | Allow      |
+| 3    | TCP         | 6        | 1024-65535 | 0.0.0.0/0    | Allow      |
+| *    | All traffic | All      | All        | 0.0.0.0/0    | Deny       |
 
 
+# Private Subnet Rules (Database )
+## Inbound Rules 
+| Rule | Type        | Protocol | Port       | Destination       | Allow/Deny |
+|------|-------------|----------|------------|-------------------|------------|
+| 1    | SSH         | 6        | 22         | IP address of app | Allow      |
+| 2    | TCP         | 6        | 27017      | 10.7.0.0/24       | Allow      |
+| 3    | TCP         | 6        | 1024-65535 | 0.0.0.0/0         | Allow      |
+| *    | All traffic | All      | All        | 0.0.0.0/0         | Deny       |
 
-## Private Subnet Rules
-
+## Outbound Rules 
+| Rule | Type        | Protocol | Port          | Destination | Allow/Deny |
+|------|-------------|----------|---------------|-------------|------------|
+| 1    | HTTP        | 6        | 80            | 0.0.0.0/0   | Allow      |
+| 2    | Custom TCP  | 6        | 1024 - 65535  | 0.0.0.0/0   | Allow      |
+| *    | All traffic | All      | All           | 0.0.0.0/0   | Deny       |
 
 
 ## loading the instance using AMI
+Once you have configured the Two rules for the NACL's you need to create an instance (or in this case load an image (AMI)).
 
+- Hover or the services dropdown and select EC2 inatance. 
+- find the AMI option
+- Once select the instance you want to run (In this case DB and App)
+- Launch the instance 
 ![image](https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2019/07/009-AMIPermissions-590x159.png)
+
+- In the ` Step 3 : Configure Instance Details `
+select the Network dropdown and select your `VPN` e.g. SRE_michael_VPN
+
+- Next, select the subnet dropdown and click on the subnet for the Instance e.g. for the app instance it would be SRE_michael_Subnet_app
+
+- Continue as normal until you reach `Step 6: configure security group`
+
+- At this point you are able to add your **Route table** that you created
+
+The two routes should look like this:
+| Port range | Protocol | Source                    | Security group |
+|------------|----------|---------------------------|----------------|
+| 22         | TCP      | public address of the app | wizzard        |
+| 27017       | TCP      | 10.7.0.0/24               | wizzard        |
+
+ The app should have the following rules 
+| Port range | Protocol | Source                    | Security group |
+|------------|----------|---------------------------|----------------|
+| 22         | TCP      | public address of the app | wizzard        |
+| 27017      | TCP      | 10.7.1.0/24               | wizzard        |
+| 80         | TCP      | 0.0.0.0/0                 | wizzard        |
+
+# END

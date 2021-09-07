@@ -65,8 +65,33 @@ ___
 - aws s3 mp [file name] s3://[bucket name]
 
 ## Delete bucket
-- aws s3 rb s3://sremichael --force
+- aws s3 rb s3://[bucket name]--force
 
 
 # Install:
-pip3 install boto3
+`pip3 install boto3`
+
+To use Boto3, you must first import it and indicate which service or services you're going to use:
+
+import boto3
+
+### Let's use Amazon S3
+s3 = boto3.resource('s3')
+
+### Print out bucket names
+```
+for bucket in s3.buckets.all():
+        print(bucket.name)
+```
+# Upload a new file
+```
+data = open('file.jpg', 'rb')
+s3.Bucket('my-bucket').put_object(Key='file.jpg', Body=data)
+```
+
+
+- Create S3 bucket using python-boto3
+- Upload data/file to S3 bucket using python-boto3
+- Retrieve content/file from S3 using python-boto3
+- Delete Content from S3 using python-boto3
+- Delete the bucket using python-boto3.**
